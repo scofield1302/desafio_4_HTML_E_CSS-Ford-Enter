@@ -1,90 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato - Ford do Brasil</title>
-    <!-- Puxa dinamicamente o arquivo CSS que estilizará o documento -->
-    <link rel="stylesheet" href="./styles/styles.css">
-    <!-- Adiciona o mesmo Favicon da Ford -->
-    <link rel="icon" href="./assets/favicon.png"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - Ford do Brasil</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="icon" href="./assets/favicon.png">
 </head>
 <body>
-    
-    
-    <header>
-        <!-- No Header é adicionado a logo da Ford, os links com a tag nav, para que os navegadores entendam que se trata de itens de navegação e esses links são direcionados às páginas existentes no projeto, que são a Home (página inicial), Lançamento e contato. -->
-        <img class="logo_ford" src="./assets/logo-ford-256.png" alt="Logo Ford">
-        <Nav class="header__links">
-        <a class="link_header" href="./index.html">Home</a>
-        <a class="link_header" href="./lancamento.html">Lançamento</a>
-        <a class="link_header" href="./contato.html" style="font-weight: bold;">Contato</a>
-        </Nav>
-    </header>
-    <main>
-        <!-- Foi criada uma div em row onde exibe uma imagem de um dos veículos de lançamento do lado esquerdo e do lado direito uma div com inputs num formulários de contato -->
 
-        <div class="groups_row_contatc">
-            <img class="contact__image" src="./assets/storm.png" alt="Imagem Ford Ranger Storm">
-            
-            <div id="main_group_contact"  style="margin-top: 50px;" class="groups_column_contact">
-                <label class="contact__about_you">Sobre você</label>
-                <!-- Foi criado um formulário de contato com Inputs, mas além disso,  foram adicionadas labels que, embora sejam opcionais, acredita-se ser de muita relevância para a experiência do usuário, visto que se o mesmo preencher alguma(s) informação(ões) e depois se esquecer sobre o que era o input, a label ajuda-o a entender o que está preenchendo sem necessitar apagar o conteúdo. Além disso, também para facilitar o preenchimento e melhorar a U.X, foram adicionados placeholders nos inputs.
-                A lista de inputs e labels com informações para serem preenchidas no formulário de contado foi criada com tag ul -->
-            <form action="" method="post">
-                <label>Nome</label>
-                <input type="text" id="Input_Name" class="input_format" placeholder="Informe o Seu Nome" required>
+<header>
+  <img class="logo_ford" src="./assets/logo-ford-256.png" alt="Logo Ford">
+  <nav class="header__links">
+    <a class="link_header" href="./index.html">Home</a>
+    <a class="link_header" href="./lancamento.html">Lançamento</a>
+    <a class="link_header" href="./contato.html" style="font-weight: bold;">Contato</a>
+  </nav>
+</header>
 
-                <label>E-mail</label>
-                <input type="email" class="input_format"  placeholder="Informe o Seu E-mail" required>
+<main>
+  <div id="popup-contact" style="display: none;">
+    <div id="popup-content-contact">
+      <p style="text-align: center; font-weight: bold;">Recebemos os seus dados</p>
+      <img src="./assets/letter.png" width="100px" height="100px"> 
+      <p id="msg_obrigado" style="text-align: justify; color: #555555;"></p>
+      <button onclick="closePopup()" style="color:#555555; width: 100%; height: 44px; background-color: #f5f8fa; border-style: none; cursor: pointer;">Voltar</button>
+    </div>
+  </div>
 
-                <label>Telefone</label>
-                <input type="text" class="input_format"  placeholder="Informe o Seu Telefone" required>
+  <div class="groups_row_contatc">
+    <img class="contact__image" src="./assets/storm.png" alt="Imagem Ford Ranger Storm">
 
-                <label>Tipo de Contato</label>
-                <select class="dropdown_format">
-                    <option value="Sugestão">Sugestão</option>
-                    <option value="Elogios">Elogios</option>
-                    <option value="Dúvida">Dúvida</option>
-                    <option value="Reclamação">Reclamação</option>
-                </select>
+    <div id="main_group_contact" style="margin-top: 50px;" class="groups_column_contact">
+      <label class="contact__about_you">Sobre você</label>
 
-                <label>Mensagem</label>
-                <textarea class="multilineinput_format"></textarea required>
-            </form>
-                <!-- Por último, o botão que enviará a solicitação de contato do usuário à montadora. -->
-                <a class="bttn_send_message">Enviar</a>
-                
-            </div>
+      <form id="form-contact" action="" method="post">
+        <label for="Input_Name">Nome</label>
+        <input type="text" id="Input_Name" class="input_format" placeholder="Informe o Seu Nome" required>
+
+        <label for="Input_Email">E-mail</label>
+        <input id="Input_Email" type="email" class="input_format" placeholder="Informe o Seu E-mail" required>
+
+        <label for="Input_Telefone">Telefone</label>
+        <input id="Input_Telefone" type="text" class="input_format" placeholder="Informe o Seu Telefone" required>
+
+        <label for="tipo_contato">Tipo de Contato</label>
+        <select id="tipo_contato" class="dropdown_format" required>
+          <option value="Sugestão">Sugestão</option>
+          <option value="Elogios">Elogios</option>
+          <option value="Dúvida">Dúvida</option>
+          <option value="Reclamação">Reclamação</option>
+        </select>
+
+        <label for="mensagem_contact">Mensagem</label>
+        <textarea id="mensagem_contact" class="multilineinput_format" placeholder="Digite sua mensagem" required></textarea>
+        <span style="text-align: justify; margin: 10px 5px; font-size: 14px;">Os dados serão mantidos em nossa base de dados, só enquanto for desejado por você. A
+          qualquer momento, será possível editar ou remover tais dados.</span>
+        <div id="checkbox1AndSpan">
+        <input type="checkbox" class="inputCheckbox" id="inputCheckboxAccept">
+        <a class="spanCheckbox1" href="https://www.ford.com.br/politica-de-privacidade/" target="_blank"><span class="spanCheckbox1" id="spanCheckbox1">Sim. Li e concordo com os Termos e Condições</span></a>
         </div>
-
-    </main>
-    <footer>
-
-        <div class="footer__socialNetwork_Logo"> <!-- div que terá as redes sociais + a logo da ford -->
-            <div class="footer__socialnetwork"> <!-- div que terá as redes sociais + a palavra Redes Sociais -->
-            <span class="text_socialNetwork">Redes Sociais</span>
-            <a href="https://www.facebook.com/FordBrasil/" target="_blank">
-                <img src="./assets/facebook-50.png" alt="Perfil no Facebook Ford do Brasil" width="35px"></a>
-            <a href="https://www.youtube.com/fordbrasil" target="_blank">
-                <img src="./assets/youtube-squared-50.png" alt="Canal no Youtube da Ford do Brasil" width="35px"></a>
-            <a href="https://www.instagram.com/fordbrasil/" target="_blank">
-                <img src="./assets/instagram-logo-50.png" alt="Perfil no Instagram da Ford do Brasil" width="35px"></a>
-            
-            </div>
-            
-        <p class="copyright">Copyright © 2025 Ford Motor Company - Todos os direitos reservados</p>
-        <img class="logo_ford" src="./assets/logo-ford-256.png" alt="Logo Ford">
+        <div id="checkbox2AndSpan">
+        <input type="checkbox" class="inputCheckbox" id="inputCheckboxNewsLetter">
+        <span class="spanCheckbox2" id="spanCheckbox2">Sim. Também quero receber descontos e novidades</span>
         </div>
+        <button disabled type="submit" class="bttn_send_message" id="bttn_send_message">Enviar</button>
+    </form>
+    </div>
+  </div>
+</main>
 
+<footer>
+  <div class="footer__socialNetwork_Logo">
+    <div class="footer__socialnetwork">
+      <span class="text_socialNetwork">Redes Sociais</span>
+      <a href="https://www.facebook.com/FordBrasil/" target="_blank">
+        <img src="./assets/facebook-50.png" alt="Perfil no Facebook Ford do Brasil" width="35px">
+      </a>
+      <a href="https://www.youtube.com/fordbrasil" target="_blank">
+        <img src="./assets/youtube-squared-50.png" alt="Canal no Youtube da Ford do Brasil" width="35px">
+      </a>
+      <a href="https://www.instagram.com/fordbrasil/" target="_blank">
+        <img src="./assets/instagram-logo-50.png" alt="Perfil no Instagram da Ford do Brasil" width="35px">
+      </a>
+    </div>
 
+    <p class="copyright">
+      Copyright © 2025 Ford Motor Company - Todos os direitos reservados
+    </p>
+    <img class="logo_ford" src="./assets/logo-ford-256.png" alt="Logo Ford">
+  </div>
+</footer>
 
-    </footer>
-</body>
-<script>
-    //Item opcional: Para melhorar a experiência do usuário, foi aidiconado um script para que ao carregar a página, o primeiro input que é o nome do usuário já esteja com foco, para não necessitar que o usuário clique dentro do input para preenchê-lo.
-    document.getElementById("Input_Name").focus();
-</script>
-    
+<script src="./js/form.js"></script>
 </body>
 </html>
